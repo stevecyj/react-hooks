@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './App.css';
 
 function App() {
@@ -6,6 +6,10 @@ function App() {
   const [ flag, setFlag ] = useState(true);
   const [ list, setList ] = useState([]);
   console.log(count);
+
+  useEffect(() => {
+    document.title = count;
+  });
 
   function test() {
     setCount(count + 1);
