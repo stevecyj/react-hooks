@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useWindiwScroll } from "./hooks/useWindiwScroll.js";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 import './App.css';
 
 function App() {
@@ -8,6 +9,10 @@ function App() {
   const [ flag, setFlag ] = useState(true);
   const [ list, setList ] = useState([]);
   const [ y ] = useWindiwScroll();
+  const [ message, setMessage ] = useLocalStorage('hook-key', 'Fei');
+  setTimeout(() => {
+    setMessage('JOJO');
+  }, 2000);
   console.log(count);
 
   useEffect(() => {
@@ -36,6 +41,8 @@ function App() {
       }}>{name}</button>
       <hr/>
       {y}
+      <hr/>
+      {message}
     </div>
   );
 }
