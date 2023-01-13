@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useWindiwScroll } from "./hooks/useWindiwScroll.js";
 import './App.css';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   const [ name, setName ] = useState('zs');
   const [ flag, setFlag ] = useState(true);
   const [ list, setList ] = useState([]);
+  const [ y ] = useWindiwScroll();
   console.log(count);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" style={{ height: '1200px' }}>
       count:{count}
       <hr/>
       flag:{flag ? 'true' : 'false'}
@@ -32,6 +34,8 @@ function App() {
       <button onClick={() => {
         setName('cp');
       }}>{name}</button>
+      <hr/>
+      {y}
     </div>
   );
 }
