@@ -49,6 +49,20 @@ function App() {
     setList([ 1, 2, 3 ]);
   }
 
+  function Test2() {
+    useEffect(() => {
+      let timer = setInterval(() => {
+        console.log('定時器執行了');
+      }, 1000);
+      return () => {
+        clearInterval(timer);
+      };
+    }, []);
+    return (
+      <div>test2</div>
+    );
+  }
+
   return (
     <div className="App" style={{ height: '1200px' }}>
       count:{count}
@@ -69,6 +83,12 @@ function App() {
       <Counter count={10}/>
       <Counter count={20}/>
       <Counter/>
+      <hr/>
+      {flag && <Test2/>}
+      <button onClick={() => {
+        setFlag(!flag);
+      }}>switch
+      </button>
     </div>
   );
 }
