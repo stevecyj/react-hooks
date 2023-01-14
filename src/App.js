@@ -3,6 +3,28 @@ import { useWindiwScroll } from "./hooks/useWindiwScroll.js";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import './App.css';
 
+function getDefaultValue() {
+  let num = 0;
+  for (let i = 0; i < 10000; i++) {
+    num += i;
+  }
+  return num;
+}
+
+function Counter(props) {
+  const [ count, setCount ] = useState(() => {
+    if (!props.count) {
+      return getDefaultValue();
+    }
+    return props.count;
+  });
+  return (
+    <button onClick={() => {
+      setCount(count + 1);
+    }}>{count}</button>
+  );
+}
+
 function App() {
   const [ count, setCount ] = useState(0);
   const [ name, setName ] = useState('zs');
@@ -43,6 +65,10 @@ function App() {
       {y}
       <hr/>
       {message}
+      <hr/>
+      <Counter count={10}/>
+      <Counter count={20}/>
+      <Counter/>
     </div>
   );
 }
