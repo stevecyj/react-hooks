@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useWindiwScroll } from "./hooks/useWindiwScroll.js";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import './App.css';
+
+const Context = createContext();
 
 function getDefaultValue() {
   let num = 0;
@@ -22,6 +24,29 @@ function Counter(props) {
     <button onClick={() => {
       setCount(count + 1);
     }}>{count}</button>
+  );
+}
+
+function ComA() {
+  const count = useContext(Context);
+  return (
+    <div>
+      this is ComA
+      <br/>
+      app傳來的資料： {count}
+      <ComC/>
+    </div>
+  );
+}
+
+function ComC() {
+  const count = useContext(Context);
+  return (
+    <div>
+      this is ComC
+      <br/>
+      app傳來的資料： {count}
+    </div>
   );
 }
 
@@ -95,35 +120,39 @@ function App() {
   }
 
   return (
-    <div className="App" style={{ height: '1200px' }}>
-      count:{count}
-      <hr/>
-      flag:{flag ? 'true' : 'false'}
-      <hr/>
-      list:{list.join('-')}
-      <button onClick={test}>+</button>
-      <br/>
-      <button onClick={() => {
-        setName('cp');
-      }}>{name}</button>
-      <hr/>
-      {y}
-      <hr/>
-      {message}
-      <hr/>
-      <Counter count={10}/>
-      <Counter count={20}/>
-      <Counter/>
-      <hr/>
-      {flag && <Test2/>}
-      <button onClick={() => {
-        setFlag(!flag);
-      }}>switch
-      </button>
-      <hr/>
-      <TestC ref={testRef}/>
-      <h1 ref={h1Ref}>this is h1</h1>
-    </div>
+    <Context.Provider value={count}>
+      <div className="App" style={{ height: '1200px' }}>
+        count:{count}
+        <hr/>
+        flag:{flag ? 'true' : 'false'}
+        <hr/>
+        list:{list.join('-')}
+        <button onClick={test}>+</button>
+        <br/>
+        <button onClick={() => {
+          setName('cp');
+        }}>{name}</button>
+        <hr/>
+        {y}
+        <hr/>
+        {message}
+        <hr/>
+        <Counter count={10}/>
+        <Counter count={20}/>
+        <Counter/>
+        <hr/>
+        {flag && <Test2/>}
+        <button onClick={() => {
+          setFlag(!flag);
+        }}>switch
+        </button>
+        <hr/>
+        <TestC ref={testRef}/>
+        <h1 ref={h1Ref}>this is h1</h1>
+        <hr/>
+        <ComA/>
+      </div>
+    </Context.Provider>
   );
 }
 
