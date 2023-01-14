@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useWindiwScroll } from "./hooks/useWindiwScroll.js";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import './App.css';
@@ -31,6 +31,8 @@ function App() {
   const [ flag, setFlag ] = useState(true);
   const [ list, setList ] = useState([]);
   const [ y ] = useWindiwScroll();
+  const testRef = useRef(null);
+  const h1Ref = useRef(null);
   const [ message, setMessage ] = useLocalStorage('hook-key', 'Fei');
   setTimeout(() => {
     setMessage('JOJO');
@@ -52,6 +54,11 @@ function App() {
     loadData();
   }, []);
 
+  useEffect(() => {
+    console.log(testRef.current);
+    console.log(h1Ref.current);
+  }, []);
+
   function test() {
     setCount(count + 1);
     setFlag(false);
@@ -70,6 +77,21 @@ function App() {
     return (
       <div>test2</div>
     );
+  }
+
+  class TestC extends React.Component {
+    state = {
+      name: "test name",
+    };
+    getName = () => {
+      return 'this is child Test';
+    };
+
+    render() {
+      return (
+        <div>this is TestC class component</div>
+      );
+    }
   }
 
   return (
@@ -98,6 +120,9 @@ function App() {
         setFlag(!flag);
       }}>switch
       </button>
+      <hr/>
+      <TestC ref={testRef}/>
+      <h1 ref={h1Ref}>this is h1</h1>
     </div>
   );
 }
