@@ -43,6 +43,15 @@ function App() {
     console.log(name);
   }, [ count, name ]);
 
+  useEffect(() => {
+    async function loadData() {
+      const res = await fetch('http://geek.itheima.net/v1_0/channels').then(res => res.json()).then(data => console.log(data));
+      console.log(res);
+    }
+
+    loadData();
+  }, []);
+
   function test() {
     setCount(count + 1);
     setFlag(false);
