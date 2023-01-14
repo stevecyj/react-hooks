@@ -1,9 +1,8 @@
-import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import Context from './helper/context';
 import { useWindiwScroll } from "./hooks/useWindiwScroll.js";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import './App.css';
-
-const Context = createContext();
 
 function getDefaultValue() {
   let num = 0;
