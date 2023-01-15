@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { HashRouter, Link, Routes, Route } from "react-router-dom";
 import Context from './helper/context';
 import { useWindiwScroll } from "./hooks/useWindiwScroll.js";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import './App.css';
+import Home from "./Home";
+import About from "./About";
 
 function getDefaultValue() {
   let num = 0;
@@ -119,39 +122,47 @@ function App() {
   }
 
   return (
-    <Context.Provider value={count}>
-      <div className="App" style={{ height: '1200px' }}>
-        count:{count}
-        <hr/>
-        flag:{flag ? 'true' : 'false'}
-        <hr/>
-        list:{list.join('-')}
-        <button onClick={test}>+</button>
-        <br/>
-        <button onClick={() => {
-          setName('cp');
-        }}>{name}</button>
-        <hr/>
-        {y}
-        <hr/>
-        {message}
-        <hr/>
-        <Counter count={10}/>
-        <Counter count={20}/>
-        <Counter/>
-        <hr/>
-        {flag && <Test2/>}
-        <button onClick={() => {
-          setFlag(!flag);
-        }}>switch
-        </button>
-        <hr/>
-        <TestC ref={testRef}/>
-        <h1 ref={h1Ref}>this is h1</h1>
-        <hr/>
-        <ComA/>
-      </div>
-    </Context.Provider>
+    <HashRouter>
+      <Link to="/">首頁</Link>
+      <Link to="/about">關於</Link>
+      <Routes>
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/about" element={<About/>}></Route>
+      </Routes>
+      <Context.Provider value={count}>
+        <div className="App" style={{ height: '1200px' }}>
+          count:{count}
+          <hr/>
+          flag:{flag ? 'true' : 'false'}
+          <hr/>
+          list:{list.join('-')}
+          <button onClick={test}>+</button>
+          <br/>
+          <button onClick={() => {
+            setName('cp');
+          }}>{name}</button>
+          <hr/>
+          {y}
+          <hr/>
+          {message}
+          <hr/>
+          <Counter count={10}/>
+          <Counter count={20}/>
+          <Counter/>
+          <hr/>
+          {flag && <Test2/>}
+          <button onClick={() => {
+            setFlag(!flag);
+          }}>switch
+          </button>
+          <hr/>
+          <TestC ref={testRef}/>
+          <h1 ref={h1Ref}>this is h1</h1>
+          <hr/>
+          <ComA/>
+        </div>
+      </Context.Provider>
+    </HashRouter>
   );
 }
 
