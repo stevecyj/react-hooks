@@ -6,6 +6,7 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import './App.css';
 import Home from "./Home";
 import About from "./About";
+import Login from "./Login";
 
 function getDefaultValue() {
   let num = 0;
@@ -128,6 +129,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/about" element={<About/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
       </Routes>
       <Context.Provider value={count}>
         <div className="App" style={{ height: '1200px' }}>
