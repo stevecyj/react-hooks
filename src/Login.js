@@ -4,7 +4,7 @@ function Login() {
   const navigate = useNavigate();
 
   function goAbout() {
-    navigate('/about', { replace: true });
+    navigate('/about?id=1001&name=JOJO', { replace: true });
   }
 
   return (
