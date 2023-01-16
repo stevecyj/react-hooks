@@ -128,7 +128,7 @@ function App() {
       <Link to="/about">關於</Link>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
-        <Route path="/about" element={<About/>}></Route>
+        <Route path="/about/:id" element={<About/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
       </Routes>
       <Context.Provider value={count}>

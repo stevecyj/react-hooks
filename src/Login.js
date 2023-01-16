@@ -4,7 +4,8 @@ function Login() {
   const navigate = useNavigate();
 
   function goAbout() {
-    navigate('/about?id=1001&name=JOJO', { replace: true });
+    // navigate('/about?id=1001&name=JOJO', { replace: true });
+    navigate('/about/1001', { replace: true });
   }
 
   return (
