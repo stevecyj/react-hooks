@@ -129,7 +129,7 @@ function App() {
       <Link to="/about">關於</Link>
       <Routes>
         <Route path="/" element={<Layout/>}>
-          <Route path="board" element={<Board/>}/>
+          <Route index element={<Board/>}/>
           <Route path="article" element={<Article/>}/>
         </Route>
         <Route path="/login" element={<Login/>}></Route>
