@@ -8,6 +8,7 @@ import Layout from "./Layout";
 import Board from "./Board";
 import Article from "./Article";
 import Login from "./Login";
+import Notfound from "./Notfound";
 
 function getDefaultValue() {
   let num = 0;
@@ -133,6 +134,7 @@ function App() {
           <Route path="article" element={<Article/>}/>
         </Route>
         <Route path="/login" element={<Login/>}></Route>
+        <Route path="*" element={<Notfound/>}></Route>
       </Routes>
 
       <Context.Provider value={count}>
