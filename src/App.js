@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { HashRouter, Link, Routes, Route } from "react-router-dom";
+import { HashRouter, Link, Route, Routes } from "react-router-dom";
 import Context from './helper/context';
 import { useWindiwScroll } from "./hooks/useWindiwScroll.js";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import './App.css';
-import Home from "./Home";
-import About from "./About";
+import Layout from "./Layout";
+import Board from "./Board";
+import Article from "./Article";
 import Login from "./Login";
 
 function getDefaultValue() {
@@ -127,11 +128,15 @@ function App() {
       <Link to="/">首頁</Link>
       <Link to="/about">關於</Link>
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/about/:id" element={<About/>}></Route>
+        <Route path="/" element={<Layout/>}>
+          <Route path="board" element={<Board/>}/>
+          <Route path="article" element={<Article/>}/>
+        </Route>
         <Route path="/login" element={<Login/>}></Route>
       </Routes>
+
       <Context.Provider value={count}>
+        <hr/>
         <div className="App" style={{ height: '1200px' }}>
           count:{count}
           <hr/>
