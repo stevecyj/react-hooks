@@ -141,6 +141,10 @@ function App() {
 
       <Context.Provider value={count}>
         <hr/>
+        <h5>計算屬性</h5>
+        {counterStore.filterList.join('-')}
+        <button onClick={counterStore.addList}>修改counterStore的陣列</button>
+        <hr/>
         {counterStore.count}
         <button onClick={counterStore.addCount}>+++</button>
         <hr/>
