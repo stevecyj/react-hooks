@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { HashRouter, Link, Route, Routes } from "react-router-dom";
 import Context from './helper/context';
+import counterStore from './store/counter';
+import { observer } from "mobx-react-lite";
 import { useWindiwScroll } from "./hooks/useWindiwScroll.js";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import './App.css';
@@ -139,6 +141,9 @@ function App() {
 
       <Context.Provider value={count}>
         <hr/>
+        {counterStore.count}
+        <button onClick={counterStore.addCount}>+++</button>
+        <hr/>
         <div className="App" style={{ height: '1200px' }}>
           count:{count}
           <hr/>
@@ -175,4 +180,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
